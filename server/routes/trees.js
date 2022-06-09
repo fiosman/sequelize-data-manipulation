@@ -11,7 +11,7 @@ const { Tree } = require("../db/models");
  *   Import Op to perform comparison operations in WHERE clauses
  **/
 // Your code here
-
+const { Op } = require("sequelize");
 /**
  * BASIC PHASE 1, Step B - List of all trees in the database
  *
