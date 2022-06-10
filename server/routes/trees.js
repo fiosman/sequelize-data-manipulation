@@ -24,7 +24,7 @@ const { Op } = require("sequelize");
  */
 router.get("/", async (req, res, next) => {
   let trees = [];
-  trees = Tree.findAll({ order: ["heightFt", "DESC"], attributes: ["heightFe", "tree", "id"] });
+  trees = Tree.findAll({ order: ["heightFt", "DESC"], attributes: ["heightFt", "tree", "id"] });
   res.json(trees);
 });
 
