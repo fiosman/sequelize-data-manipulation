@@ -24,7 +24,10 @@ const { Op } = require("sequelize");
  */
 router.get("/", async (req, res, next) => {
   let trees = [];
-  trees = Tree.findAll({ order: ["heightFt", "DESC"], attributes: ["heightFt", "tree", "id"] });
+  trees = await Tree.findAll({
+    order: ["heightFt", "DESC"],
+    attributes: ["heightFt", "tree", "id"],
+  });
   res.json(trees);
 });
 
@@ -42,7 +45,7 @@ router.get("/:id", async (req, res, next) => {
 
   try {
     // Your code here
-    tree = Tree.findOne({
+    tree = await Tree.findOne({
       where: {
         id: req.body.id,
       },
