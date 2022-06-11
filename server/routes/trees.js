@@ -47,7 +47,7 @@ router.get("/:id", async (req, res, next) => {
     // Your code here
     tree = await Tree.findOne({
       where: {
-        id: req.body.id,
+        id: req.params.id,
       },
     });
     if (tree) {
