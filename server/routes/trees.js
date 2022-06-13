@@ -123,6 +123,7 @@ router.post("/", async (req, res, next) => {
  */
 router.delete("/:id", async (req, res, next) => {
   try {
+    await Tree.destroy({ where: { id: req.params.id } });
     res.json({
       status: "success",
       message: `Successfully removed tree ${req.params.id}`,
