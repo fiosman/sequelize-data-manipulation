@@ -1,11 +1,11 @@
+require("dotenv").config();
+
 module.exports = {
   development: {
-    storage: process.env.DB_FILE,
-    dialect: "sqlite",
-    seederStorage: "sequelize",
-    benchmark: true,
-    logQueryParameters: true,
-    typeValidation: true,
-    // logging: false
+    username: process.env.USERNAME,
+    password: process.env.PASSWORD,
+    database: process.env.DB,
+    host: process.env.HOST,
+    dialect: process.env.DIALECT,
   },
 };
