@@ -174,6 +174,28 @@ router.delete("/:id", async (req, res, next) => {
 router.put("/:id", async (req, res, next) => {
   try {
     // Your code here
+    let opts = {};
+
+    if (req.body.name) opts.tree = req.body.name;
+
+    if (req.body.location) opts.location = req.body.location;
+
+    if (req.body.height) opts.heightFt = req.body.height;
+
+    if (req.body.size) opts.groundCircumferenceFt = req.body.size;
+
+    const updatedTree = await Tree.update(
+      {
+        ...opts,
+      },
+      { where: { id: req.params.id }, returning: true, plain: true }
+    );
+
+    res.json({
+      status: "success",
+      message: `Successfully updated the tree`,
+      data: updatedTree[1],
+    });
   } catch (err) {
     next({
       status: "error",
