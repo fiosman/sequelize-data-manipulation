@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Insect extends Model {
     /**
@@ -11,22 +9,26 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Insect.belongsToMany(models.Tree, { through: models.InsectTree });
     }
-  };
-  Insect.init({
-    name: DataTypes.STRING,
-    description: DataTypes.STRING,
-    fact: DataTypes.STRING,
-    territory: DataTypes.STRING,
-    millimeters: {
-      type: DataTypes.FLOAT,
-      validate: {
-        min: 0,
+  }
+  Insect.init(
+    {
+      name: DataTypes.STRING,
+      description: DataTypes.STRING,
+      fact: DataTypes.STRING,
+      territory: DataTypes.STRING,
+      millimeters: {
+        type: DataTypes.FLOAT,
+        validate: {
+          min: 0,
+        },
       },
+    },
+    {
+      sequelize,
+      modelName: "Insect",
     }
-  }, {
-    sequelize,
-    modelName: 'Insect',
-  });
+  );
   return Insect;
 };
